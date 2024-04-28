@@ -1,5 +1,5 @@
 """
-URL configuration for CalculatorAMPM project.
+URL configuration for CalculatorMSR project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
