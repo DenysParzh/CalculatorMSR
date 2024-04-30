@@ -10,20 +10,80 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alike+Angular&family=Sofia+Sans+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alike+Angular&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Sofia+Sans+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap" rel="stylesheet">
     <meta charset = "UTF-8">
     <title>Calculator</title>
 </head>
 <body>
      <header>
         <div class = "block-for-header">
-            <h1 style = "color: #c0763a;">Моделювання генераторів псевдовипадкових послідовностей</h1>
+            <h1>Моделювання генераторів псевдовипадкових послідовностей</h1>
         </div>
     </header>
     <main>
         <div class = "container">
-            <div class = "input-group mb-3">
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-              </div>
+            <div class = "select-container">
+                <div class = "name">Порядок матриці L</div>
+                <div class = "input-group mb-3">
+                    <input type = "text" class = "form-control" placeholder = "L" aria-label = "Rank" style = "width: 50px">
+                    <span class = "input-group-text">@</span>
+                    <select class="form-select" aria-label="Default select example">
+                          <option selected>Polynom L</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class = "select-container">
+                <div class = "name">Порядок матриці A</div>
+                <div class = "input-group mb-3">
+                    <input type = "text" class = "form-control" placeholder = "n" aria-label = "N" style = "width: 50px">
+                    <span class = "input-group-text">@</span>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Polynom A</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class = "select-container">
+                <div class = "name">Порядок матриці B</div>
+                <div class = "input-group mb-3">
+                    <input type = "text" class = "form-control" placeholder = "m" aria-label = "M" style = "width: 50px">
+                    <span class = "input-group-text">@</span>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Polynom B</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class = "select-container">
+                <div class = "name">Елемент матриці S</div>
+                <div class = "input-group mb-3">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>i</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <span class = "input-group-text">@</span>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>j</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" class="btn style-button btn-outline-primary">Розрахувати</button>
+            </div>
         </div>
     </main>
 </body>
