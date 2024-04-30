@@ -1,5 +1,9 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 
-# Create your views here.
-def main(request):
-    return render(request, 'base.html')
+
+def msr(request):
+    return render(request, 'msr.html')
+
+
+def lfsr(request):
+    return render(request, 'lfsr.html')

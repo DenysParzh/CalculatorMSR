@@ -1,16 +1,32 @@
-.block-for-header
+.container-nav
 {
-    display: flex;
     font-family: "Sofia Sans Condensed", sans-serif;
     background-color: #d9c87e;
-    height: 100px;
-    align-items: center;
-    justify-content: center;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 25px;
+    margin: 0;
 }
+
+.main-nav{
+    font-size: 35px;
+}
+
+.nav-container{
+    display: flex;
+    justify-content: start;
+    align-items: center ;
+    margin-left: 40px;
+    margin-right: 40px;
+    background-color: #7FA9E3;
+}
+
+
 h1
 {
     color: #c0763a;
 }
+
 main
 {
     font-family: "Roboto Condensed", sans-serif;
@@ -34,6 +50,9 @@ main
     width: 900px;
     padding: 0 20px;
 }
+
+
+
 .name
 {
     background-color: #7FA9E3;
