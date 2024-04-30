@@ -1,4 +1,9 @@
-.gray-block {
-    background-color: #7E8BE1;
+.block-for-header
+{
+    display: flex;
+    font-family: "Sofia Sans Condensed", sans-serif;
+    background-color: #d9c87e;
     height: 100px;
+    align-items: center;
+    justify-content: center;
 }
