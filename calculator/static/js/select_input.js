@@ -14,7 +14,7 @@ function handleInputChange(inputId, selectId, url) {
                         selectField.innerHTML = '';
                         data.forEach(function(item) {
                             var option = document.createElement('option');
-                            option.value = item.id;
+                            option.value = `${item.j} ${item.G8} ${item.t}`;
                             option.textContent = `<${item.j} ${item.G8}${item.t}>`;
                             selectField.appendChild(option);
                         });
