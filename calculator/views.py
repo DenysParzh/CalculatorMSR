@@ -34,6 +34,7 @@ def lfsr_calculate(request):
         select_value = request.POST.get('select_field')
         seed_value = request.POST.get('seed_field')
 
+
         print(input_value, select_value, seed_value)
 
     return HttpResponse(f'Выбранная опция: {select_value}')
