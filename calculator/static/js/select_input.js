@@ -1,6 +1,6 @@
-import {get_cookie} from "./get_cookie";
-
 function handleInputChange(inputId, selectId, url) {
+    import {get_cookie} from "./get_cookie";
+
     document.getElementById(inputId).addEventListener('input', function(){
         var inputValue = this.value;
         var xhr = new XMLHttpRequest();

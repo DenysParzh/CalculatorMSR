@@ -1,6 +1,6 @@
-import {get_cookie} from './get_cookie.js';
-
 function handleSubmit(event) {
+    import {get_cookie} from './get_cookie.js';
+
     event.preventDefault();
 
     var form = event.target;
@@ -16,3 +16,4 @@ function handleSubmit(event) {
     };
     xhr.send(formData);
 }
+
