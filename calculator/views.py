@@ -30,11 +30,11 @@ def update_poly_lfsr(request):
 
 def lfsr_calculate(request):
     if request.method == 'POST':
-        input_value = request.POST.get('input_field')
-        select_value = request.POST.get('select_field')
-        seed_value = request.POST.get('seed_field')
+        n = request.POST.get('input_field')
+        poly = request.POST.get('select_field')
+        seed = request.POST.get('seed_field')
 
-
-        print(input_value, select_value, seed_value)
-
-    return HttpResponse(f'Выбранная опция: {select_value}')
+        print(poly, n, seed)
+        result = lfsr_calc.calculate(n, poly, seed)
+        return JsonResponse(result)
+    return HttpResponse({'error': 'This is not POST request'}, status=400)

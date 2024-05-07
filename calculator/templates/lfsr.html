@@ -26,12 +26,21 @@
             </div>
         </form>
     </div>
-
+    
     <script src="{% static 'js/select_input.js' %}"></script>
+    <script src="{% static 'js/lfsr_data_output.js' %}"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             handleInputChange('input_field', 'select_field', '/lfsr/form_update/');
         });
     </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+                var form = document.querySelector('form');
+                form.addEventListener('submit', handleSubmit);
+            });
+    </script>
+    
 {% endblock %}

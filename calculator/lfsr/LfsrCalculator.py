@@ -5,7 +5,10 @@ class LfsrCalculator:
     def calculate(self, n, poly, seed=1):
         output_data = {}
         n = int(n)
-        j, g8, _ = map(int, poly.split(' '))
+        j, g8, _ = poly.split(' ')
+        j = int(j)
+        g8 = int(g8)
+        seed = int(seed)
         bin_poly = convert8to2(g8)[1:]
         seed = convert10to2(seed, len(bin_poly))
         struct_matrix = self.get_structure_matrix(bin_poly)
