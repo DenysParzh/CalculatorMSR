@@ -1,19 +1,39 @@
-function handleSubmit(event) {
-    import {get_cookie} from './get_cookie.js';
+function handleFormSubmit() {
+    const form = document.querySelector('form');
 
-    event.preventDefault();
+    form.addEventListener('submit', function (event) {
+        event.preventDefault()
 
-    var form = event.target;
-    var formData = new FormData(form);
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', form.getAttribute('action'), true);
-    xhr.setRequestHeader('X-CSRFToken', get_cookie('csrftoken'));
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            console.log(response);
-        }
-    };
-    xhr.send(formData);
+        const formData = new FormData(form);
+
+        fetch('calculate/', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': get_cookie('csrftoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
 }
 
+function get_cookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}

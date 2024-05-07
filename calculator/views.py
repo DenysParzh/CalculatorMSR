@@ -36,5 +36,7 @@ def lfsr_calculate(request):
 
         print(poly, n, seed)
         result = lfsr_calc.calculate(n, poly, seed)
+
         return JsonResponse(result)
-    return HttpResponse({'error': 'This is not POST request'}, status=400)
+
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
