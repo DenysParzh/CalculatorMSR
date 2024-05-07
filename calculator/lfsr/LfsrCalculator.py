@@ -1,8 +1,26 @@
+import math
+import numpy as np
+
 from .utils import convert8to2, convert10to2
 
 
 class LfsrCalculator:
     def calculate(self, n, poly, seed=1):
+
+        '''
+        :param n: str => example: "6"
+        :param poly: str => example: "1 127 B"
+        :param seed: str => example: "1"
+        :return: dict =>
+            1. struct_matrix: list[list[int]]
+            2. inv_struct_matrix: list[list[int]]
+            3. gen_states: list[list[int]]
+            4. sequence: list[int]
+            5. hamming_weight: int
+            6. real_period: int
+            7. theoretical_period: int
+        '''
+
         output_data = {}
         n = int(n)
         j, g8, _ = poly.split(' ')
@@ -13,12 +31,24 @@ class LfsrCalculator:
         seed = convert10to2(seed, len(bin_poly))
         struct_matrix = self.get_structure_matrix(bin_poly)
         sequence, generator_states = self.calculate_sequence(seed, struct_matrix)
+        inv_struct_matrix = self.get_inv_struct_matrix(struct_matrix)
 
         output_data['struct_matrix'] = struct_matrix
+        output_data['inv_struct_matrix'] = inv_struct_matrix
         output_data['sequence'] = sequence
         output_data['gen_states'] = generator_states
+        output_data['hamming_weight'] = len(list(filter(lambda x: x, sequence)))
+        output_data['real_period'] = len(generator_states)
+        output_data['theoretical_period'] = (2 ** n - 1) // math.gcd(2 ** n - 1, j)
 
         return output_data
+
+    @staticmethod
+    def get_inv_struct_matrix(struct_matrix):
+        inv_matrix = np.linalg.inv(np.array(struct_matrix))
+        filtred_output = np.where(np.abs(inv_matrix) < 1e-10, 0, inv_matrix)
+        result_output = np.round(filtred_output, decimals=3).tolist()
+        return result_output
 
     @staticmethod
     def get_structure_matrix(bin_poly: list[int]):
