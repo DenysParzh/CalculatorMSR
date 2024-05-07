@@ -16,12 +16,15 @@
                     {% endfor %}
                 </select>
             </div>
-
-            <div>
+            <div class="name">Початковий стан</div>
+            <div class="input-group mb-3">
+                <input type="number" id="seed_field" name="seed_field" class="form-control" placeholder="seed"
+                       aria-label="seed" style="width: 50px">
+            </div>
+            <div style = "text-align: center">
                 <button type="submit" class="btn style-button btn-outline-primary">Розрахувати</button>
             </div>
         </form>
-
     </div>
 
     <script src="{% static 'js/select_input.js' %}"></script>

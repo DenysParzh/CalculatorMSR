@@ -1,5 +1,4 @@
-.container-nav
-{
+.container-nav  {
     font-family: "Sofia Sans Condensed", sans-serif;
     background-color: #d9c87e;
     padding-left: 50px;
@@ -7,12 +6,10 @@
     font-size: 25px;
     margin: 0;
 }
-
-.main-nav{
+.main-nav {
     font-size: 35px;
 }
-
-.nav-container{
+.nav-container {
     display: flex;
     justify-content: start;
     align-items: center ;
@@ -20,15 +17,10 @@
     margin-right: 40px;
     background-color: #7FA9E3;
 }
-
-
-h1
-{
+h1 {
     color: #c0763a;
 }
-
-main
-{
+main {
     font-family: "Roboto Condensed", sans-serif;
     display: flex;
     flex-direction: column;
@@ -40,8 +32,7 @@ main
     margin-right: 40px;
     border-radius: 18px;
 }
-.container
-{
+.container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -50,11 +41,7 @@ main
     width: 900px;
     padding: 0 20px;
 }
-
-
-
-.name
-{
+.name {
     background-color: #7FA9E3;
     height: 27px;
     padding-top: 1px;
@@ -62,11 +49,9 @@ main
     text-align: center;
     margin-bottom: 5px;
 }
-.select-container
-{
+.select-container {
     width: 500px;
 }
-.style-button
-{
+.style-button {
     color: black;
 }
