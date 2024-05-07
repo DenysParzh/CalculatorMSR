@@ -1,4 +1,4 @@
-from utils import convert8to2, convert10to2
+from .utils import convert8to2, convert10to2
 
 
 class LfsrCalculator:

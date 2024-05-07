@@ -1,14 +1,15 @@
-from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render
 
 from .models import Polynomial
+from .loader import lfsr_calc
 
 
-def msr(request):
+def msr_main(request):
     return render(request, 'msr.html')
 
 
-def lfsr(request):
+def lfsr_main(request):
     return render(request, 'lfsr.html')
 
 
@@ -31,7 +32,8 @@ def lfsr_calculate(request):
     if request.method == 'POST':
         input_value = request.POST.get('input_field')
         select_value = request.POST.get('select_field')
+        seed_value = request.POST.get('seed_field')
 
-        print(input_value, select_value)
+        print(input_value, select_value, seed_value)
 
     return HttpResponse(f'Выбранная опция: {select_value}')
