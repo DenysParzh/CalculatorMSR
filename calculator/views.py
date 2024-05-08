@@ -13,7 +13,7 @@ def lfsr_main(request):
     return render(request, 'lfsr.html')
 
 
-def update_poly_lfsr(request):
+def update_poly(request):
     if request.method == 'POST':
         input_value = request.POST.get('input_field', '')
         degree = int(input_value)
