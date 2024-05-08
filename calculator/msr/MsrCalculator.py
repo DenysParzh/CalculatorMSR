@@ -103,7 +103,7 @@ class MsrCalculator:
         while True:
 
             matrix_s = np.matmul(np.matmul(matrix_a, matrix_s) % 2, matrix_b) % 2
-            sequence.append(matrix_s[i, j])
+            sequence.append(int(matrix_s[i, j]))
             states.append(matrix_s.tolist())
 
             if np.all(matrix_s == limit):
