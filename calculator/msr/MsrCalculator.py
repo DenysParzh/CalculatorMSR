@@ -25,6 +25,9 @@ class MsrCalculator:
         matrix_b = self._get_matrix_b(b_poly)
         matrix_s = self._generate_matrix_s(r, a_power, b_power)
 
+        inv_matrix_a = utils.get_inv_struct_matrix(matrix_a)
+        inv_matrix_b = utils.get_inv_struct_matrix(matrix_b)
+
         sequence, states = self._calculate_sequence(matrix_a, matrix_b, matrix_s, i, j)
         bin_sequence = utils.sequence_to_bin(sequence)
 
@@ -43,9 +46,11 @@ class MsrCalculator:
         output['b_period'] = b_poly_period
         output['matrix_a'] = matrix_a
         output['matrix_b'] = matrix_b
+        output['inv_matrix_a'] = inv_matrix_a
+        output['inv_matrix_b'] = inv_matrix_b
         output['sequence'] = sequence
-        output['bin_sequence'] = bin_sequence
         output['states'] = states
+        output['bin_sequence'] = bin_sequence
         output['real_hamming_weight'] = real_hamming_weight
         output['theoretical_hamming_weight'] = theoretical_hamming_weight
         output['theoretical_period'] = theoretical_period

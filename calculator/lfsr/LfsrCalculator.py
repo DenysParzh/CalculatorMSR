@@ -1,7 +1,7 @@
 import math
 import numpy as np
 
-from ..utils import convert8to2, convert10to2
+from ..utils import convert8to2, convert10to2, get_inv_struct_matrix
 
 
 class LfsrCalculator:
@@ -19,6 +19,7 @@ class LfsrCalculator:
             5. hamming_weight: int
             6. real_period: int
             7. theoretical_period: int
+            8. polynomial: str
         '''
 
         output_data = {}
@@ -31,8 +32,10 @@ class LfsrCalculator:
         seed = convert10to2(seed, len(bin_poly))
         struct_matrix = self.get_structure_matrix(bin_poly)
         sequence, generator_states = self.calculate_sequence(seed, struct_matrix)
-        inv_struct_matrix = self.get_inv_struct_matrix(struct_matrix)
+        inv_struct_matrix = get_inv_struct_matrix(struct_matrix)
+        str_poly = self._get_str_poly(bin_poly)
 
+        output_data['poly'] = str_poly
         output_data['struct_matrix'] = struct_matrix
         output_data['inv_struct_matrix'] = inv_struct_matrix
         output_data['sequence'] = sequence
@@ -44,11 +47,17 @@ class LfsrCalculator:
         return output_data
 
     @staticmethod
-    def get_inv_struct_matrix(struct_matrix):
-        inv_matrix = np.linalg.inv(np.array(struct_matrix))
-        filtred_output = np.where(np.abs(inv_matrix) < 1e-10, 0, inv_matrix)
-        result_output = np.round(filtred_output, decimals=3).tolist()
-        return result_output
+    def _get_str_poly(poly):
+        power = len(poly) - 1
+        result = ""
+
+        for elem in poly:
+            if elem:
+                result += f"x^{power} + "
+
+            power -= 1
+
+        return result[:-3]
 
     @staticmethod
     def get_structure_matrix(bin_poly: list[int]):

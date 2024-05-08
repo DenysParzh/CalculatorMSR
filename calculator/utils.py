@@ -32,3 +32,12 @@ def calculate_hamming_weight(sequence):
 
 def sequence_to_bin(sequence):
     return [-1 if elem else 1 for elem in sequence]
+
+
+def get_inv_struct_matrix(struct_matrix):
+    import numpy as np
+
+    inv_matrix = np.linalg.inv(np.array(struct_matrix))
+    filtered_output = np.where(np.abs(inv_matrix) < 1e-10, 0, inv_matrix)
+    result_output = np.round(filtered_output, decimals=3).tolist()
+    return result_output
