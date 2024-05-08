@@ -1,4 +1,5 @@
-function get_cookie(name) {
+function get_cookie()
+{
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         var cookies = document.cookie.split(';');

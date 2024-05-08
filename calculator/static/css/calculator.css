@@ -22,8 +22,6 @@ h1 {
 }
 main {
     font-family: "Roboto Condensed", sans-serif;
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
     background-color: lightblue;
     padding: 20px;
@@ -37,7 +35,7 @@ main {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 100px;
+    height: 300px;
     width: 900px;
     padding: 0 20px;
 }
@@ -51,7 +49,50 @@ main {
 }
 .select-container {
     width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .style-button {
     color: black;
+}
+.main-div
+{
+    margin-top: 20px;
+    display: flex;
+    width: 900px;
+}
+.column-div
+{
+    flex: 0 0 auto;
+}
+.sub-div
+{
+    width: 260px;
+    margin-right: 50px;
+}
+.gen_states_div_style
+{
+    flex: 0 0 auto;
+    margin-left: 70px;
+    width: 500px;
+    height: 400px;
+    margin-bottom: 10px;
+}
+.table-width
+{
+    border: 1px solid #eee;
+    text-align: center;
+    width: 260px;
+}
+.table-container
+{
+    width: 515px;
+    height: 330px;
+    overflow: scroll;
+}
+.table-generator
+{
+    text-align: center;
+    width: 500px;
+    height: 400px;
 }

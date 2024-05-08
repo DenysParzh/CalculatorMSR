@@ -2,36 +2,37 @@
 {% load static %}
 
 {% block content %}
-    <div class="select-container">
-        <div class="name">Матриця F</div>
-        <form method="POST" action="{% url 'lfsr_calculate' %}">
-            {% csrf_token %}
-            <div class="input-group mb-3">
-                <input type="number" id="input_field" name="input_field" class="form-control" placeholder="L"
-                       aria-label="Rank" style="width: 50px">
-                <span class="input-group-text"><=></span>
-                <select id="select_field" name="select_field" class="form-select" aria-label="Default select example">
-                    {% for poly in polynoms %}
-                        <option value="{{ item.id }}"><{{ poly.j }} {{ poly.G8 }}{{ poly.t }}></option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="name">Початковий стан</div>
-            <div class="input-group mb-3">
-                <input type="number" id="seed_field" name="seed_field" class="form-control" placeholder="seed"
-                       aria-label="seed" style="width: 50px">
-            </div>
-            <div style="text-align: center">
-                <button type="submit" class="btn style-button btn-outline-primary">Розрахувати</button>
-            </div>
-        </form>
+    <div id = "shell">
+        <div class="select-container" id = "main_container">
+            <div class="name">Матриця F</div>
+            <form method="POST" action="{% url 'lfsr_calculate' %}">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input type="number" id="input_field" name="input_field" class="form-control" placeholder="L"
+                           aria-label="Rank" style="width: 50px">
+                    <span class="input-group-text"><=></span>
+                    <select id="select_field" name="select_field" class="form-select" aria-label="Default select example">
+                        {% for poly in polynoms %}
+                            <option value="{{ item.id }}"><{{ poly.j }} {{ poly.G8 }}{{ poly.t }}></option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="name">Початковий стан</div>
+                <div class="input-group mb-3">
+                    <input type="number" id="seed_field" name="seed_field" class="form-control" placeholder="seed"
+                           aria-label="seed" style="width: 50px">
+                </div>
+                <div style="text-align: center">
+                    <button type="submit" class="btn style-button btn-outline-primary">Розрахувати</button>
+                </div>
+            </form>
+        </div>
     </div>
-
     <script src="{% static 'js/select_input.js' %}"></script>
     <script src="{% static 'js/lfsr_data_output.js' %}"></script>
-
+    
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function ()  {
             handleInputChange('input_field', 'select_field', '/lfsr/form_update/');
         });
     </script>
@@ -40,6 +41,5 @@
             handleFormSubmit();
         });
     </script>
-
 
 {% endblock %}
