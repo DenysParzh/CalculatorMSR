@@ -35,7 +35,7 @@ class LfsrCalculator:
         inv_struct_matrix = get_inv_struct_matrix(struct_matrix)
         str_poly = self._get_str_poly(bin_poly)
 
-        output_data['poly'] = str_poly
+        output_data['polynomial'] = str_poly
         output_data['struct_matrix'] = struct_matrix
         output_data['inv_struct_matrix'] = inv_struct_matrix
         output_data['sequence'] = sequence
