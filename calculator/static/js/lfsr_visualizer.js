@@ -1,30 +1,4 @@
-function handleFormSubmit() {
-    const form = document.querySelector('form');
-
-    form.addEventListener('submit', function (event) {
-        event.preventDefault()
-
-        // const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-        const formData = new FormData(form);
-
-        fetch('calculate/', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRFToken': get_cookie()
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            data_output(data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    });
-}
-
-function data_output(data) {
+function lfsr_response_visualization(data) {
     // If div exists, it will be deleted
     let existingDiv2 = document.getElementById('data_output');
     if(existingDiv2)

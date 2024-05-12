@@ -1,7 +1,7 @@
 import numpy as np
 
 from .. import utils
-from polynomial import IrredPolynom
+from .polynomial import IrredPolynom
 
 
 class MsrCalculator:

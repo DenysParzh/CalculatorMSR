@@ -6,7 +6,7 @@ function updateSelect(inputId, selectId, initValue=0) {
 
         for (var i = initValue; i < inputValue + initValue; i++) {
             var option = document.createElement('option');
-            option.value = i;
+            option.value = `${i}`;
             option.textContent = i;
             selectField.appendChild(option);
         }

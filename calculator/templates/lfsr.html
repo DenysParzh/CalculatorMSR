@@ -4,12 +4,12 @@
 {% block content %}
     <div id = "shell">
         <div class = "select-container" id = "main_container">
-            <div class = "name">Матриця F</div>
-            <form method = "POST" action = "{% url 'lfsr_calculate' %}">
+            <form method = "POST" action = "{% url 'lfsr_calculate' %}" id="formLfsrValue">
                 {% csrf_token %}
+                <div class = "name">Матриця F</div>
                 <div class = "input-group mb-3">
                     <input type = "number" id = "input_field" name = "input_field" class = "form-control"
-                           placeholder = "L" aria-label = "Rank" style = "width: 50px">
+                           placeholder = "L" aria-label = "Rank" style = "width: 50px" min="2" max="15">
                     <span class = "input-group-text"><=></span>
                     <select id = "select_field" name = "select_field" class = "form-select"
                             aria-label = "Default select example">
@@ -32,17 +32,17 @@
 
     <script src="{% static 'js/get_cookie.js' %}"></script>
     <script src="{% static 'js/select_input.js' %}"></script>
-    <script src="{% static 'js/lfsr_data_output.js' %}"></script>
-    
+    <script src="{% static 'js/lfsr_visualizer.js' %}"></script>
+    <script src="{% static 'js/handle_form_submit.js' %}"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function ()  {
             handleInputChange('input_field', 'select_field', '/lfsr/form_update/');
         });
-    </script>
-    <script>
         document.addEventListener('DOMContentLoaded', function () {
-            handleFormSubmit();
+            handleFormSubmit("formLfsrValue", "calculate/", lfsr_response_visualization);
         });
     </script>
+
 
 {% endblock %}

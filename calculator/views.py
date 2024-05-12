@@ -1,8 +1,8 @@
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 
+from .loader import lfsr_calc, msr_calc
 from .models import Polynomial
-from .loader import lfsr_calc
 
 
 def msr_main(request):
@@ -36,6 +36,23 @@ def lfsr_calculate(request):
 
         print(poly, n, seed)
         result = lfsr_calc.calculate(n, poly, seed)
+
+        return JsonResponse(result)
+
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+
+def msr_calculate(request):
+    if request.method == 'POST':
+        n = request.POST.get('n_input')
+        m = request.POST.get('m_input')
+        a_poly = request.POST.get('a_select')
+        b_poly = request.POST.get('b_select')
+        i = request.POST.get('i_select')
+        j = request.POST.get('j_select')
+        r = request.POST.get('r_select')
+
+        result = msr_calc.calculate(n, m, a_poly, b_poly, i, j, r)
 
         return JsonResponse(result)
 
