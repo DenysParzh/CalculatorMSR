@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 from .. import utils
 from .polynomial import IrredPolynom
@@ -37,7 +38,7 @@ class MsrCalculator:
         a_poly_period = a_poly.get_t_period()
         b_poly_period = b_poly.get_t_period()
 
-        theoretical_period = a_poly_period * b_poly_period
+        theoretical_period = math.lcm(a_poly_period, b_poly_period)
         real_period = len(sequence)
 
         output['a_poly'] = str(a_poly)
