@@ -11,6 +11,36 @@ class MsrCalculator:
                   a_poly: str, b_poly: str,
                   i: str, j: str, r: str) -> dict:
 
+        """
+            Perform a series of computations based on the provided irreducible
+            polynomials and parameters to generate a sequence and various properties related to these polynomials.
+
+            :param n: Degree of the first irreducible polynomial. Example: "4"
+            :param m: Degree of the second irreducible polynomial. Example: "6"
+            :param a_poly: String representation of the first irreducible polynomial. Example: "3 37 D"
+            :param b_poly: String representation of the second irreducible polynomial. Example: "3 127 B"
+            :param i: Initial state index for the sequence calculation. Example: "1"
+            :param j: Secondary state index for the sequence calculation. Example: "2"
+            :param r: Parameter for the generation of matrix `s`. Example: "3"
+
+            :return: Dictionary containing the following keys and their corresponding computed values:
+                1. a_poly: str - String representation of the first irreducible polynomial.
+                2. b_poly: str - String representation of the second irreducible polynomial.
+                3. a_period: int - Period of the first irreducible polynomial.
+                4. b_period: int - Period of the second irreducible polynomial.
+                5. matrix_a: list[list[int]] - Matrix representation of the first irreducible polynomial.
+                6. matrix_b: list[list[int]] - Matrix representation of the second irreducible polynomial.
+                7. inv_matrix_a: list[list[int]] - Inverse of `matrix_a`.
+                8. inv_matrix_b: list[list[int]] - Inverse of `matrix_b`.
+                9. sequence: list[int] - Generated sequence based on the matrix computations.
+                10. states: list[list[int]] - States used in the sequence calculation.
+                11. bin_sequence: list[int] - Binary representation of the generated sequence.
+                12. real_hamming_weight: int - Hamming weight of the generated sequence.
+                13. theoretical_hamming_weight: int - Theoretical Hamming weight.
+                14. theoretical_period: int - Theoretical period derived from the irreducible polynomials.
+                15. real_period: int - Actual period of the generated sequence.
+            """
+
         output = {}
 
         i = int(i)
