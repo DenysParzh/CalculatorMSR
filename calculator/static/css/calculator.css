@@ -1,7 +1,7 @@
 .container-nav
 {
     font-family: "Sofia Sans Condensed", sans-serif;
-    background-color: #d9c87e;
+    background-color: #143300;
     padding-left: 50px;
     padding-right: 50px;
     font-size: 25px;
@@ -11,33 +11,50 @@
 {
     font-size: 35px;
 }
-.nav-container
+
+button
 {
-    display: flex;
-    justify-content: start;
-    align-items: center ;
-    margin-left: 40px;
-    margin-right: 40px;
-    background-color: #7FA9E3;
+    position: relative;
+    display: inline-block;
+    margin: 3px;
+    height: 40px;
+    padding: 0 20px;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #143300;
+    background: transparent;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    border: 2px solid #143300;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 0 #143300;
 }
-.style-button
+button:hover
 {
-    color: black;
+    color: white;
+    box-shadow: inset 0 -100px 0 0 #143300;
 }
+button:active
+{
+    transform: scale(0.9);
+}
+.full-rounded
+{
+    border-radius: 2em;
+}
+
 main
 {
     font-family: "Roboto Condensed", sans-serif;
     min-height: 100vh;
-    background-color: lightblue;
+    background-color: #9EE970;
     padding: 20px;
-    margin-top: 40px;
-    margin-left: 40px;
-    margin-right: 40px;
-    border-radius: 18px;
 }
 .name
 {
-    background-color: #7FA9E3;
+    background-color: #143300;
+    color: white;
     height: 27px;
     padding-top: 1px;
     border-radius: 8px;
@@ -55,7 +72,7 @@ main
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
-    margin-left: 100px;
+    margin-left: 50px;
 }
 .column-div
 {
@@ -69,8 +86,8 @@ main
     align-items: center;
     flex-direction: column;
     margin-bottom: 10px;
-    height: 230px;
-    width: 400px;
+    height: 250px;
+    width: 450px;
     background-color: lightgray;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px, rgba(0, 0, 0, 0.12) 0 -12px 30px, rgba(0, 0, 0, 0.12)
