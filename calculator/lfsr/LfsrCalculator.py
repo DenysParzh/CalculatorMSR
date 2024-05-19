@@ -1,7 +1,7 @@
 import math
-import numpy as np
 
-from ..utils import convert8to2, convert10to2, get_inv_struct_matrix
+from ..utils import (convert8to2, convert10to2,
+                     get_inv_struct_matrix, sequence_to_bin)
 
 
 class LfsrCalculator:
@@ -16,10 +16,11 @@ class LfsrCalculator:
             2. inv_struct_matrix: list[list[int]]
             3. gen_states: list[list[int]]
             4. sequence: list[int]
-            5. hamming_weight: int
-            6. real_period: int
-            7. theoretical_period: int
-            8. polynomial: str
+            5 bin_sequence: list[int]
+            6. hamming_weight: int
+            7. real_period: int
+            8. theoretical_period: int
+            9. polynomial: str
         '''
 
         output_data = {}
@@ -32,6 +33,7 @@ class LfsrCalculator:
         seed = convert10to2(seed, len(bin_poly))
         struct_matrix = self.get_structure_matrix(bin_poly)
         sequence, generator_states = self.calculate_sequence(seed, struct_matrix)
+        binary_sequence = sequence_to_bin(sequence)
         inv_struct_matrix = get_inv_struct_matrix(struct_matrix)
         str_poly = self._get_str_poly(bin_poly)
 
@@ -39,6 +41,7 @@ class LfsrCalculator:
         output_data['struct_matrix'] = struct_matrix
         output_data['inv_struct_matrix'] = inv_struct_matrix
         output_data['sequence'] = sequence
+        output_data['bin_sequence'] = binary_sequence
         output_data['gen_states'] = generator_states
         output_data['hamming_weight'] = len(list(filter(lambda x: x, sequence)))
         output_data['real_period'] = len(generator_states)
