@@ -33,11 +33,18 @@ function create_block(label_id, text_id, className, parent_div, textContent, dat
     div_label.textContent = textContent;
     div.appendChild(div_label);
 
+    const text_upper_container = document.createElement('div');
+    text_upper_container.style.overflowX = 'auto';
+    text_upper_container.style.whiteSpace = 'nowrap';
+    text_upper_container.style.maxWidth = '519px'
+    text_upper_container.style.overflowY = 'hidden'
+    div.appendChild(text_upper_container);
+
     const text = document.createElement('div');
     text.id = text_id;
     text.className = 'block';
     text.textContent = data;
-    div.appendChild(text);
+    text_upper_container.appendChild(text);
 }
 
 function create_table(data) {
