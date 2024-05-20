@@ -167,3 +167,9 @@ tr:nth-child(odd)
     width: 400px;
     height: 80px;
 }
+.btn-div
+{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5px;
+}

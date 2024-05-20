@@ -30,9 +30,9 @@ function msr_response_visualization(data) {
         matrix_a_cont.style.maxHeight = '200px';
         setTimeout(() => {
             if (matrix_a_cont.scrollHeight > matrix_a_cont.clientHeight) {
-                document.getElementById('matrix_a_table').style.width = '355px';
+                document.getElementById('matrix_a_table').style.width = '360px';
             } else {
-                document.getElementById('matrix_a_table').style.width = '370px';
+                document.getElementById('matrix_a_table').style.width = '375px';
             }
         }, 0);
 
@@ -48,9 +48,9 @@ function msr_response_visualization(data) {
         matrix_b_cont.style.maxHeight = '200px';
         setTimeout(() => {
             if (matrix_b_cont.scrollHeight > matrix_b_cont.clientHeight) {
-                document.getElementById('matrix_b_table').style.width = '355px';
+                document.getElementById('matrix_b_table').style.width = '360px';
             } else {
-                document.getElementById('matrix_b_table').style.width = '370px';
+                document.getElementById('matrix_b_table').style.width = '375px';
             }
         }, 0);
     }
@@ -72,9 +72,9 @@ function msr_response_visualization(data) {
         matrix_a_cont.style.maxHeight = '200px';
         setTimeout(() => {
             if (matrix_a_cont.scrollHeight > matrix_a_cont.clientHeight) {
-                document.getElementById('matrix_a_inv_table').style.width = '355px';
+                document.getElementById('matrix_a_inv_table').style.width = '360px';
             } else {
-                document.getElementById('matrix_a_inv_table').style.width = '370px';
+                document.getElementById('matrix_a_inv_table').style.width = '375px';
             }
         }, 0);
 
@@ -90,30 +90,37 @@ function msr_response_visualization(data) {
         matrix_b_cont.style.maxHeight = '200px';
         setTimeout(() => {
             if (matrix_b_cont.scrollHeight > matrix_b_cont.clientHeight) {
-                document.getElementById('matrix_b_inv_table').style.width = '355px';
+                document.getElementById('matrix_b_inv_table').style.width = '360px';
             } else {
-                document.getElementById('matrix_b_inv_table').style.width = '370px';
+                document.getElementById('matrix_b_inv_table').style.width = '375px';
             }
         }, 0);
     }
 
     let currentStateIndex = 0;
-    const data_states = data.states
+    const data_states = data.states;
     const row_div_states = document.createElement('div');
-    row_div_matrix_inv.className = 'row-div-msr';
-    div.appendChild(row_div_matrix_inv);
+    row_div_states.className = 'row-div-msr';
+    div.appendChild(row_div_states);
 
+    const btn_div = document.createElement('div');
+    btn_div.className = 'btn-div';
 
     const nextBtn = document.createElement('button');
     nextBtn.id = 'next-btn';
     nextBtn.textContent = 'next';
     // nextBtn.disabled = states.length <= 1;
-    row_div_states.appendChild(nextBtn);
+    btn_div.appendChild(nextBtn)
+
+    const resetBtn = document.createElement('button');
+    resetBtn.id = 'reset-btn';
+    resetBtn.textContent = 'reset';
+    btn_div.appendChild(resetBtn)
 
     function updateVisualization() {
         const currentState = data_states[currentStateIndex];
 
-        let states_div = document.getElementById('matrix_states_cont');
+        let states_div = document.getElementsByClassName('sub-div')[4];
         if (states_div) {
             states_div.parentNode.removeChild(states_div);
         }
@@ -124,18 +131,19 @@ function msr_response_visualization(data) {
             "sub-div",
             row_div_states, "Стани генератору", currentState)
 
+        document.getElementsByClassName('sub-div')[4].style.height = '310px';
         document.getElementById('matrix_states_lbl').style.width = '380px';
         let matrix_state_cont = document.getElementById('matrix_states_cont');
         matrix_state_cont.style.width = '375px';
-        matrix_state_cont.style.maxHeight = '200px';
+        matrix_state_cont.style.maxHeight = '220px';
         setTimeout(() => {
             if (matrix_state_cont.scrollHeight > matrix_state_cont.clientHeight) {
-                document.getElementById('matrix_states_table').style.width = '355px';
+                document.getElementById('matrix_states_table').style.width = '360px';
             } else {
-                document.getElementById('matrix_states_table').style.width = '370px';
+                document.getElementById('matrix_states_table').style.width = '375px';
             }
         }, 0);
-
+        document.getElementsByClassName('sub-div')[4].appendChild(btn_div);
     }
 
     nextBtn.addEventListener('click', function () {
@@ -144,11 +152,6 @@ function msr_response_visualization(data) {
             updateVisualization();
         }
     });
-
-    const resetBtn = document.createElement('button');
-    resetBtn.id = 'reset-btn';
-    resetBtn.textContent = 'reset';
-    row_div_states.appendChild(resetBtn);
 
     resetBtn.addEventListener('click', function () {
         currentStateIndex = 0;
