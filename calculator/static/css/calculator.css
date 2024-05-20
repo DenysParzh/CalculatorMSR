@@ -67,6 +67,7 @@ main
     margin-left: auto;
     margin-right: auto;
 }
+
 .row-div
 {
     display: flex;
@@ -74,6 +75,14 @@ main
     margin-top: 10px;
     margin-left: 50px;
 }
+
+.row-div-msr
+{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+
 .column-div
 {
     display: flex;
@@ -93,6 +102,7 @@ main
     box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px, rgba(0, 0, 0, 0.12) 0 -12px 30px, rgba(0, 0, 0, 0.12)
                 0 4px 6px, rgba(0, 0, 0, 0.17) 0 12px 13px, rgba(0, 0, 0, 0.09) 0 -3px 5px;
 }
+
 table, th, td
 {
     text-align: center;

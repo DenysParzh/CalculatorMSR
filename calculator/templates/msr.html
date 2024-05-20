@@ -3,55 +3,59 @@
 
 
 {% block content %}
-    <div class="select-container" id="main_container">
-        <form method="POST" action="{% url 'msr_calculate' %}" id="formMsrValue">
-            {% csrf_token %}
+    <div id="shell">
+        <div class="select-container" id="main_container">
+            <form method="POST" action="{% url 'msr_calculate' %}" id="formMsrValue">
+                {% csrf_token %}
 
-            <div class="name">Матриця А</div>
-            <div class="input-group mb-3">
-                <input id="n_input" name="n_input" type="number" class="form-control" placeholder="n" aria-label="N"
-                       style="width: 50px" min="2" max="15">
-                <span class="input-group-text"><=></span>
-                <select id="a_select" name="a_select" class="form-select" aria-label="Default select example">
+                <div class="name">Матриця А</div>
+                <div class="input-group mb-3">
+                    <input id="n_input" name="n_input" type="number" class="form-control" placeholder="n" aria-label="N"
+                           style="width: 50px" min="2" max="15">
+                    <span class="input-group-text"><=></span>
+                    <select id="a_select" name="a_select" class="form-select" aria-label="Default select example">
 
-                </select>
-            </div>
+                    </select>
+                </div>
 
-            <div class="name">Матриця B</div>
-            <div class="input-group mb-3">
-                <input id="m_input" name="m_input" type="number" class="form-control" placeholder="m" aria-label="M"
-                       style="width: 50px" min="2" max="15">
-                <span class="input-group-text"><=></span>
-                <select id="b_select" name="b_select" class="form-select" aria-label="Default select example">
+                <div class="name">Матриця B</div>
+                <div class="input-group mb-3">
+                    <input id="m_input" name="m_input" type="number" class="form-control" placeholder="m" aria-label="M"
+                           style="width: 50px" min="2" max="15">
+                    <span class="input-group-text"><=></span>
+                    <select id="b_select" name="b_select" class="form-select" aria-label="Default select example">
 
-                </select>
-            </div>
-            
-
-            <div class="name">Елемент матриці S</div>
-            <div class="input-group mb-3">
-                <select id="i_select" name="i_select" class="form-select" aria-label="Default select example">
-
-                </select>
-                <span class="input-group-text"><=></span>
-                <select id="j_select" name="j_select" class="form-select" aria-label="Default select example">
-
-                </select>
-            </div>
+                    </select>
+                </div>
 
 
-            <div class="name">Ранг S<sub>0</sub></div>
-            <div class="input-group mb-3">
-                <select id="r_select" name="r_select" class="form-select" aria-label="Default select example">
+                <div class="name">Елемент матриці S</div>
+                <div class="input-group mb-3">
+                    <select id="i_select" name="i_select" class="form-select" aria-label="Default select example">
 
-                </select>
-            </div>
+                    </select>
+                    <span class="input-group-text"><=></span>
+                    <select id="j_select" name="j_select" class="form-select" aria-label="Default select example">
+
+                    </select>
+                </div>
 
 
-            <div style="text-align: center">
-                <button type="submit" class="btn style-button btn-outline-primary">Розрахувати</button>
-            </div>
-        </form>
+                <div class="name">Ранг S<sub>0</sub></div>
+                <div class="input-group mb-3">
+                    <select id="r_select" name="r_select" class="form-select" aria-label="Default select example">
+
+                    </select>
+                </div>
+
+
+                <div style="text-align: center">
+                    <button type="submit" class="btn style-button btn-outline-primary">Розрахувати</button>
+                </div>
+            </form>
+        </div>
+
+
     </div>
 
     <script src="{% static 'js/msr_visualizer.js' %}"></script>
@@ -59,6 +63,7 @@
     <script src="{% static 'js/get_cookie.js' %}"></script>
     <script src="{% static 'js/select_input.js' %}"></script>
     <script src="{% static 'js/update_select.js' %}"></script>
+    <script src="{% static 'js/components.js' %}"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
