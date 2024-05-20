@@ -159,4 +159,71 @@ function msr_response_visualization(data) {
     });
 
     updateVisualization();
+
+
+    create_block('seq_lbl', 'seq', 'sequence-div', div, 'Послідовність',
+        data.sequence.join(' '));
+    document.getElementById('seq_lbl').style.width = '515px';
+
+    create_block('bin_seq_lbl', 'bin_seq',
+        'sequence-div', div, 'Бінарна послідовність',
+        data.bin_sequence.join(' '));
+
+    document.getElementById('bin_seq_lbl').style.width = '515px';
+
+    const row_div_poly = document.createElement('div');
+    row_div_poly.className = 'row-div-msr block-content';
+    div.appendChild(row_div_poly);
+
+    create_block('poly_a_label', 'poly_a_text', 'box', row_div_poly, 'Поліном А', data.a_poly);
+    document.getElementById('poly_a_label').style.width = '320px';
+    document.getElementById('poly_a_text').style.width = '150px';
+
+    create_block('poly_b_label', 'poly_b_text', 'box', row_div_poly, 'Поліном B', data.b_poly);
+    document.getElementById('poly_b_label').style.width = '320px';
+    document.getElementById('poly_b_text').style.width = '150px';
+
+    const row_div_period_matrix = document.createElement('div');
+    row_div_period_matrix.className = 'row-div-msr block-content';
+    div.appendChild(row_div_period_matrix);
+
+    create_block('period_a_label', 'period_a_text', 'box', row_div_period_matrix,
+        'Період T(A)', data.a_period);
+    document.getElementById('period_a_label').style.width = '320px';
+    document.getElementById('period_a_text').style.width = '150px';
+
+    create_block('period_b_label', 'period_b_text', 'box', row_div_period_matrix,
+        'Період T(B)', data.b_period);
+    document.getElementById('period_b_label').style.width = '320px';
+    document.getElementById('period_b_text').style.width = '150px';
+
+    const row_div_hamming = document.createElement('div');
+    row_div_hamming.className = 'row-div-msr block-content';
+    div.appendChild(row_div_hamming);
+
+    create_block('hamming_teor_label', 'hamming_teor_text', 'box',
+        row_div_hamming, 'Теоритична вага Хемінгу', data.theoretical_hamming_weight);
+
+    document.getElementById('hamming_teor_label').style.width = '320px';
+    document.getElementById('hamming_teor_text').style.width = '150px';
+
+    create_block('hamming_real_label', 'hamming_real_text', 'box',
+        row_div_hamming, 'Реальна вага Хемінгу', data.real_hamming_weight);
+    document.getElementById('hamming_real_label').style.width = '320px';
+    document.getElementById('hamming_real_text').style.width = '150px';
+
+    const row_div_period = document.createElement('div');
+    row_div_period.className = 'row-div-msr block-content';
+    div.appendChild(row_div_period);
+
+    create_block('period_teor_label', 'period_teor_text', 'box',
+         row_div_period, 'Теоретичний період', data.theoretical_period);
+
+    document.getElementById('period_teor_label').style.width = '320px';
+    document.getElementById('period_teor_text').style.width = '150px';
+
+    create_block('period_real_label', 'period_real_text', 'box',
+         row_div_period, 'Реальний період', data.real_period);
+    document.getElementById('period_real_label').style.width = '320px';
+    document.getElementById('period_real_text').style.width = '150px';
 }

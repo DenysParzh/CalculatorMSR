@@ -36,7 +36,7 @@ function create_block(label_id, text_id, className, parent_div, textContent, dat
     const text_upper_container = document.createElement('div');
     text_upper_container.style.overflowX = 'auto';
     text_upper_container.style.whiteSpace = 'nowrap';
-    text_upper_container.style.maxWidth = '519px'
+    text_upper_container.style.maxWidth = '515px'
     text_upper_container.style.overflowY = 'hidden'
     div.appendChild(text_upper_container);
 

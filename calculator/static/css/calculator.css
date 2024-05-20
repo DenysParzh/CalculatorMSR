@@ -83,6 +83,10 @@ main
     margin-top: 30px;
 }
 
+.block-content{
+    justify-content: center;
+}
+
 .column-div
 {
     display: flex;
