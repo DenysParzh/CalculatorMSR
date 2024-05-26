@@ -33,11 +33,11 @@ class LfsrCalculator:
         g8 = int(g8)
         seed = int(seed)
 
-        flag, message = self.validate_input(j, n, seed)
-        output_data["error_flag"] = flag
+        error_flag, message = self._validate_input(j, n, seed)
+        output_data["error_flag"] = error_flag
         output_data["message"] = message
 
-        if not flag:
+        if error_flag:
             return output_data
 
         bin_poly = convert8to2(g8)[1:]
@@ -104,7 +104,7 @@ class LfsrCalculator:
         return sequence, generator_states
 
     @staticmethod
-    def validate_input(j, degree, seed):
+    def _validate_input(j, degree, seed):
         # is_poly_valid = validation_polynomial(degree, j)
         is_seed_valid = seed <= (2 ** degree - 1)
 
@@ -112,6 +112,6 @@ class LfsrCalculator:
         #     return False, "Polynomial and degree are not valid"
 
         if not is_seed_valid:
-            return False, "Seed are not valid"
+            return True, "Seed are not valid"
 
-        return True, "Data successful"
+        return False, "Data successful"

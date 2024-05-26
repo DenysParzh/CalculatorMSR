@@ -39,6 +39,8 @@ class MsrCalculator:
                 13. theoretical_hamming_weight: int - Theoretical Hamming weight.
                 14. theoretical_period: int - Theoretical period derived from the irreducible polynomials.
                 15. real_period: int - Actual period of the generated sequence.
+                16. error flag: bool
+                17. message: str => example: "Data successful", "Seed are not valid"
             """
 
         output = {}
@@ -51,6 +53,13 @@ class MsrCalculator:
 
         a_poly = IrredPolynom(a_power, a_poly)
         b_poly = IrredPolynom(b_power, b_poly)
+
+        error_flag, message = self._validate_input(a_poly.j, b_poly.j, a_power, b_power)
+        output["error_flag"] = error_flag
+        output["message"] = message
+
+        if error_flag:
+            return output
 
         matrix_a = self._get_matrix_a(a_poly)
         matrix_b = self._get_matrix_b(b_poly)
@@ -144,3 +153,19 @@ class MsrCalculator:
 
             if np.all(matrix_s == limit):
                 return sequence, states
+
+    @staticmethod
+    def _validate_input(jA, jB, degreeA, degreeB):
+        if degreeA > degreeB:
+            return True, "Degree A is greater than Degree B"
+
+        is_valid_polyA = utils.validation_polynomial(degreeA, jA)
+        is_valid_polyB = utils.validation_polynomial(degreeB, jB)
+
+        if not is_valid_polyA:
+            return True, "Polynomial A is not valid"
+
+        if not is_valid_polyB:
+            return True, "Polynomial B is not valid"
+
+        return False, "Data successful"
