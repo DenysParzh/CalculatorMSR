@@ -1,7 +1,8 @@
 import math
 
 from ..utils import (convert8to2, convert10to2,
-                     get_inv_struct_matrix, sequence_to_bin)
+                     get_inv_struct_matrix, sequence_to_bin,
+                     validation_polynomial)
 
 
 class LfsrCalculator:
@@ -21,6 +22,8 @@ class LfsrCalculator:
             7. real_period: int
             8. theoretical_period: int
             9. polynomial: str
+            10. error flag: bool
+            11. message: str => example: "Data successful", "Seed are not valid"
         '''
 
         output_data = {}
@@ -29,6 +32,14 @@ class LfsrCalculator:
         j = int(j)
         g8 = int(g8)
         seed = int(seed)
+
+        flag, message = self.validate_input(j, n, seed)
+        output_data["error_flag"] = flag
+        output_data["message"] = message
+
+        if not flag:
+            return output_data
+
         bin_poly = convert8to2(g8)[1:]
         seed = convert10to2(seed, len(bin_poly))
         struct_matrix = self.get_structure_matrix(bin_poly)
@@ -91,3 +102,16 @@ class LfsrCalculator:
                 break
 
         return sequence, generator_states
+
+    @staticmethod
+    def validate_input(j, degree, seed):
+        # is_poly_valid = validation_polynomial(degree, j)
+        is_seed_valid = seed <= (2 ** degree - 1)
+
+        # if not is_poly_valid:
+        #     return False, "Polynomial and degree are not valid"
+
+        if not is_seed_valid:
+            return False, "Seed are not valid"
+
+        return True, "Data successful"

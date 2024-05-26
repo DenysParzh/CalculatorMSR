@@ -41,3 +41,12 @@ def get_inv_struct_matrix(struct_matrix):
     filtered_output = np.where(np.abs(inv_matrix) < 1e-10, 0, inv_matrix)
     result_output = np.round(filtered_output, decimals=3).tolist()
     return result_output
+
+
+def validation_polynomial(degree, j):
+    from math import gcd
+
+    first = (2 ** degree) - 1
+    return gcd(first, j) == 1
+
+
