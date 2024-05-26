@@ -66,3 +66,15 @@ function create_table(data) {
     }
     return table;
 }
+
+function showPopup(message) {
+    let popup = document.getElementById('popup');
+    document.getElementById('popup_message').innerText = message;
+    popup.classList.add('show');
+    setTimeout(() => { popup.classList.remove('show'); }, 5000);
+}
+
+function closePopup() {
+    let popup = document.getElementById('popup');
+    popup.classList.remove('show');
+}

@@ -16,7 +16,11 @@ function handleFormSubmit(id, endpoint, callback) {
         })
         .then(response => response.json())
         .then(data => {
-            callback(data);
+            if(data.error_flag === true)
+            {
+                showPopup(data.message);
+            }
+            else {callback(data);}
         })
         .catch(error => {
             console.error('Error:', error);

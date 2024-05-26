@@ -17,7 +17,7 @@ class LfsrCalculator:
             2. inv_struct_matrix: list[list[int]]
             3. gen_states: list[list[int]]
             4. sequence: list[int]
-            5 bin_sequence: list[int]
+            5  bin_sequence: list[int]
             6. hamming_weight: int
             7. real_period: int
             8. theoretical_period: int
