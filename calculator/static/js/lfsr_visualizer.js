@@ -84,7 +84,7 @@ function lfsr_response_visualization(data) {
         create_block('seq_lbl', 'seq', 'sequence-div', div, 'Послідовність', data.sequence.join(''));
         document.getElementById('seq_lbl').style.width = '515px';
 
-        create_block('bin_seq_lbl', 'bin_seq', 'sequence-div', div, 'Бінарна послідовність', data.bin_sequence.join(' '));
+        create_block('bin_seq_lbl', 'bin_seq', 'sequence-div', div, 'Бінарна послідовність', data.bin_sequence.join(''));
         document.getElementById('bin_seq_lbl').style.width = '515px';
     }
 
