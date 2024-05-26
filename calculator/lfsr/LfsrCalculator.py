@@ -1,8 +1,6 @@
 import math
 
-from ..utils import (convert8to2, convert10to2,
-                     get_inv_struct_matrix, sequence_to_bin,
-                     validation_polynomial)
+from .. import utils
 
 
 class LfsrCalculator:
@@ -22,8 +20,9 @@ class LfsrCalculator:
             7. real_period: int
             8. theoretical_period: int
             9. polynomial: str
-            10. error flag: bool
-            11. message: str => example: "Data successful", "Seed are not valid"
+            10. acf: list[float]
+            11. error flag: bool
+            12. message: str => example: "Data successful", "Seed are not valid"
         '''
 
         output_data = {}
@@ -40,13 +39,15 @@ class LfsrCalculator:
         if error_flag:
             return output_data
 
-        bin_poly = convert8to2(g8)[1:]
-        seed = convert10to2(seed, len(bin_poly))
+        bin_poly = utils.convert8to2(g8)[1:]
+        seed = utils.convert10to2(seed, len(bin_poly))
         struct_matrix = self.get_structure_matrix(bin_poly)
         sequence, generator_states = self.calculate_sequence(seed, struct_matrix)
-        binary_sequence = sequence_to_bin(sequence)
-        inv_struct_matrix = get_inv_struct_matrix(struct_matrix)
+        binary_sequence = utils.sequence_to_bin(sequence)
+        inv_struct_matrix = utils.get_inv_struct_matrix(struct_matrix)
         str_poly = self._get_str_poly(bin_poly)
+        real_period = len(generator_states)
+        acf = utils.calculate_acf(real_period, binary_sequence)
 
         output_data['polynomial'] = str_poly
         output_data['struct_matrix'] = struct_matrix
@@ -55,8 +56,9 @@ class LfsrCalculator:
         output_data['bin_sequence'] = binary_sequence
         output_data['gen_states'] = generator_states
         output_data['hamming_weight'] = len(list(filter(lambda x: x, sequence)))
-        output_data['real_period'] = len(generator_states)
+        output_data['real_period'] = real_period
         output_data['theoretical_period'] = (2 ** n - 1) // math.gcd(2 ** n - 1, j)
+        output_data['acf'] = acf
 
         return output_data
 

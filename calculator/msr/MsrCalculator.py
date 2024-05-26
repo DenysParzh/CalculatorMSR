@@ -6,7 +6,6 @@ from .polynomial import IrredPolynom
 
 
 class MsrCalculator:
-
     def calculate(self, n: str, m: str,
                   a_poly: str, b_poly: str,
                   i: str, j: str, r: str) -> dict:
@@ -39,8 +38,9 @@ class MsrCalculator:
                 13. theoretical_hamming_weight: int - Theoretical Hamming weight.
                 14. theoretical_period: int - Theoretical period derived from the irreducible polynomials.
                 15. real_period: int - Actual period of the generated sequence.
-                16. error flag: bool
-                17. message: str => example: "Data successful", "Seed are not valid"
+                16. acf: list[float]
+                17. error flag: bool
+                18. message: str => example: "Data successful", "Seed are not valid"
             """
 
         output = {}
@@ -80,6 +80,8 @@ class MsrCalculator:
         theoretical_period = math.lcm(a_poly_period, b_poly_period)
         real_period = len(sequence)
 
+        acf = utils.calculate_acf(real_period, bin_sequence)
+
         output['a_poly'] = str(a_poly)
         output['b_poly'] = str(b_poly)
         output['a_period'] = a_poly_period
@@ -95,6 +97,7 @@ class MsrCalculator:
         output['theoretical_hamming_weight'] = theoretical_hamming_weight
         output['theoretical_period'] = theoretical_period
         output['real_period'] = real_period
+        output['acf'] = acf
 
         return output
 
@@ -155,17 +158,17 @@ class MsrCalculator:
                 return sequence, states
 
     @staticmethod
-    def _validate_input(jA, jB, degreeA, degreeB):
-        if degreeA > degreeB:
+    def _validate_input(j_a, j_b, degree_a, degree_b):
+        if degree_a > degree_b:
             return True, "Degree A is greater than Degree B"
 
-        is_valid_polyA = utils.validation_polynomial(degreeA, jA)
-        is_valid_polyB = utils.validation_polynomial(degreeB, jB)
+        is_valid_poly_a = utils.validation_polynomial(degree_a, j_a)
+        is_valid_poly_b = utils.validation_polynomial(degree_b, j_b)
 
-        if not is_valid_polyA:
+        if not is_valid_poly_a:
             return True, "Polynomial A is not valid"
 
-        if not is_valid_polyB:
+        if not is_valid_poly_b:
             return True, "Polynomial B is not valid"
 
         return False, "Data successful"

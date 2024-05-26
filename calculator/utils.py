@@ -50,3 +50,12 @@ def validation_polynomial(degree, j):
     return gcd(first, j) == 1
 
 
+def calculate_acf(real_t, binary_sequence):
+    acf = []
+    for tilda in range(real_t):
+        sum = 0
+        for t in range(real_t - 1):
+            sum += binary_sequence[t] * binary_sequence[(t + tilda) % (real_t - 1)]
+        acf.append(sum / real_t)
+
+    return acf
