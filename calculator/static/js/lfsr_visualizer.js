@@ -123,8 +123,27 @@ function lfsr_response_visualization(data) {
         document.getElementById('poly').style.width = '150px';
     }
 
-    // GRAPHICS
-    {
+    // ACF GRAPHIC
 
+    const graphic_block = document.createElement('div')
+    graphic_block.id = 'graphic_block_acf'
+    div.appendChild(graphic_block)
+
+    {
+        var data_acf = data.acf;
+        var x_line = Array.from({length: data_acf.length}, (v, i) => i + 1);
+
+        var trace = {
+            x: x_line,
+            y: data_acf,
+            mode: 'lines',
+        };
+
+        var data = [trace];
+        var layout = {
+          title:'ACF Graphic'
+        };
+
+        Plotly.newPlot('graphic_block_acf', data, layout);
     }
 }

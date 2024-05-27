@@ -226,4 +226,9 @@ function msr_response_visualization(data) {
          row_div_period, 'Реальний період', data.real_period);
     document.getElementById('period_real_label').style.width = '320px';
     document.getElementById('period_real_text').style.width = '150px';
+
+    // ACF GRAPHIC
+    {
+
+    }
 }
