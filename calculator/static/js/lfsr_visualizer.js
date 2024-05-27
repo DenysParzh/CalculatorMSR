@@ -124,12 +124,24 @@ function lfsr_response_visualization(data) {
     }
 
     // ACF GRAPHIC
-
-    const graphic_block = document.createElement('div')
-    graphic_block.id = 'graphic_block_acf'
-    div.appendChild(graphic_block)
-
     {
+        const graphic_block = document.createElement('div');
+        graphic_block.className = 'acf-block';
+        div.appendChild(graphic_block);
+
+        const graphic_block_lbl = document.createElement('div');
+        graphic_block_lbl.style.marginTop = '5px';
+        graphic_block_lbl.style.width = '700px';
+        graphic_block_lbl.className = 'name';
+        graphic_block_lbl.textContent = 'Графік АЦФ';
+        graphic_block.appendChild(graphic_block_lbl);
+
+        const graphic = document.createElement('div');
+        graphic.id = 'graphic_block_acf';
+        graphic.style.width = '1000px';
+        graphic.style.height = '390px';
+        graphic_block.appendChild(graphic);
+
         var data_acf = data.acf;
         var x_line = Array.from({length: data_acf.length}, (v, i) => i + 1);
 
@@ -140,10 +152,16 @@ function lfsr_response_visualization(data) {
         };
 
         var data = [trace];
-        var layout = {
-          title:'ACF Graphic'
+        var layout = {title:''};
+        var settings = {
+            scrollZoom: true,
+            modeBarButtonsToRemove: ['toImage', 'zoom2d', 'zoomIn2d',
+                                      'zoomOut2d', 'resetScale2d'],
+            displaylogo: false
         };
 
-        Plotly.newPlot('graphic_block_acf', data, layout);
+        Plotly.newPlot('graphic_block_acf', data, layout, settings).then(function() {
+            Plotly.relayout('graphic_block_acf', {dragmode: 'pan'})
+        });
     }
 }
