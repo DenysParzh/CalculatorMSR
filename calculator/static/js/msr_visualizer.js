@@ -177,11 +177,11 @@ function msr_response_visualization(data) {
 
     create_block('poly_a_label', 'poly_a_text', 'box', row_div_poly, 'Поліном А', data.a_poly);
     document.getElementById('poly_a_label').style.width = '320px';
-    document.getElementById('poly_a_text').style.width = '150px';
+    document.getElementById('poly_a_text').style.width = '320px';
 
     create_block('poly_b_label', 'poly_b_text', 'box', row_div_poly, 'Поліном B', data.b_poly);
     document.getElementById('poly_b_label').style.width = '320px';
-    document.getElementById('poly_b_text').style.width = '150px';
+    document.getElementById('poly_b_text').style.width = '320px';
 
     const row_div_period_matrix = document.createElement('div');
     row_div_period_matrix.className = 'row-div-msr block-content';

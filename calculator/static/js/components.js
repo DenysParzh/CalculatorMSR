@@ -45,17 +45,26 @@ function create_block(label_id, text_id, className, parent_div, textContent, dat
     text.className = 'block';
     text.textContent = data;
     text_upper_container.appendChild(text);
+
+    function adjustTextAlignment() {
+        if (text.scrollWidth > text_upper_container.clientWidth) {
+            text.style.justifyContent = 'left';
+        } else {
+            text.style.justifyContent = 'center';
+        }
+    }
+
+    adjustTextAlignment();
+    window.addEventListener('resize', adjustTextAlignment);
 }
 
 function create_table(data) {
     const table = document.createElement('table');
     const tbody = document.createElement('tbody');
     table.appendChild(tbody);
-    for(let i = 0; i < data.length; i++)
-    {
+    for (let i = 0; i < data.length; i++) {
         let row = document.createElement('tr');
-        for(let j = 0; j < data[i].length; j++)
-        {
+        for (let j = 0; j < data[i].length; j++) {
             let cell = document.createElement('td');
             cell.textContent = data[i][j];
             cell.style.border = '1px solid black';
@@ -71,7 +80,9 @@ function showPopup(message) {
     let popup = document.getElementById('popup');
     document.getElementById('popup_message').innerText = message;
     popup.classList.add('show');
-    setTimeout(() => { popup.classList.remove('show'); }, 5000);
+    setTimeout(() => {
+        popup.classList.remove('show');
+    }, 5000);
 }
 
 function closePopup() {
