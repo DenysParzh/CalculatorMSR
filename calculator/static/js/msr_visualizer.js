@@ -255,17 +255,19 @@ function msr_response_visualization(data) {
             mode: 'lines',
         };
 
-        var data = [trace];
-        var layout = {title: ''};
-        var settings = {
+        var data_trace_acf = [trace];
+        var layout_acf = {title: ''};
+        var settings_acf = {
             scrollZoom: true,
             modeBarButtonsToRemove: ['toImage', 'zoom2d', 'zoomIn2d',
                 'zoomOut2d', 'resetScale2d'],
             displaylogo: false
         };
 
-        Plotly.newPlot('graphic_block_acf', data, layout, settings).then(function () {
+        Plotly.newPlot('graphic_block_acf', data_trace_acf, layout_acf,settings_acf).then(function () {
             Plotly.relayout('graphic_block_acf', {dragmode: 'pan'})
         });
     }
+
+
 }

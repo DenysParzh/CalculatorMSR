@@ -104,8 +104,8 @@ class MsrCalculator:
         output['theoretical_period'] = theoretical_period
         output['real_period'] = real_period
         output['acf'] = acf
-        output['autocorr_per'] = autocorr_per.tolist()
-        output['autocorr_nonper'] = autocorr_nonper.tolist()
+        output['autocorr_per'] = autocorr_per
+        output['autocorr_nonper'] = autocorr_nonper
 
         return output
 
@@ -198,7 +198,10 @@ class MsrCalculator:
         height, width = autocorr_normalized.shape
         autocorr_normalized_nonperiodic = autocorr_normalized[height // 2:, width // 2:]
 
-        return autocorr_normalized, autocorr_normalized_nonperiodic
+        autocorr_normalized = np.round(autocorr_normalized, decimals=3)
+        autocorr_normalized_nonperiodic = np.round(autocorr_normalized_nonperiodic, decimals=3)
+
+        return autocorr_normalized.tolist(), autocorr_normalized_nonperiodic.tolist()
 
     @staticmethod
     def _validate_input(j_a, j_b, degree_a, degree_b):
