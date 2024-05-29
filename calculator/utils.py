@@ -34,6 +34,10 @@ def sequence_to_bin(sequence):
     return [-1 if elem else 1 for elem in sequence]
 
 
+def matrix_to_bin(matrix):
+    return [[-1 if element else 1 for element in row] for row in matrix]
+
+
 def get_inv_struct_matrix(struct_matrix):
     import numpy as np
 

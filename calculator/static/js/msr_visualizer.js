@@ -279,7 +279,7 @@ function msr_response_visualization(data) {
         torus_period_lbl.style.marginTop = '5px';
         torus_period_lbl.style.width = '700px';
         torus_period_lbl.className = 'name';
-        torus_period_lbl.textContent = 'Періодична АКФ Тору станів';
+        torus_period_lbl.textContent = 'Періодична АЦФ тору';
         torus_period_block.appendChild(torus_period_lbl);
 
         const torus_period = document.createElement('div');
@@ -315,7 +315,7 @@ function msr_response_visualization(data) {
         torus_nonperiod_lbl.style.marginTop = '5px';
         torus_nonperiod_lbl.style.width = '700px';
         torus_nonperiod_lbl.className = 'name';
-        torus_nonperiod_lbl.textContent = 'Аперіодична АКФ Тору станів';
+        torus_nonperiod_lbl.textContent = 'Аперіодична АЦФ тору';
         torus_nonperiod_block.appendChild(torus_nonperiod_lbl);
 
         const torus_nonperiod = document.createElement('div');
