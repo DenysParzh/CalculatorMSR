@@ -339,4 +339,39 @@ function msr_response_visualization(data) {
         var nonperiod_torus_layout = {showlegend: false};
         Plotly.newPlot('torus_nonperiod', data_torus_nonperiod, nonperiod_torus_layout , {staticPlot: true});
     }
+
+    // AUTOCORRELATION FUNCTION
+    {
+        const autocorrelation_block = document.createElement('div');
+        autocorrelation_block.className = 'acf-block';
+        div.appendChild(autocorrelation_block);
+
+        const autocorrelation_lbl = document.createElement('div');
+        autocorrelation_lbl.style.marginTop = '5px';
+        autocorrelation_lbl.style.width = '700px';
+        autocorrelation_lbl.className = 'name';
+        autocorrelation_lbl.textContent = 'Матрична автокореляційна функція послідовності';
+        autocorrelation_block.appendChild(autocorrelation_lbl);
+
+        const autocorrelation = document.createElement('div');
+        autocorrelation.id = 'autocorrelation';
+        autocorrelation.style.width = '1000px';
+        autocorrelation.style.height = '390px';
+        autocorrelation_block.appendChild(autocorrelation);
+
+        var autocorrelation_graphic = [
+            {
+               z: data.autocorr2d_seq,
+               type: 'heatmap',
+                colorscale: [
+                    [0, 'rgb(45,106, 79)'],
+                    [0.5, 'rgb(0, 255, 0)'],
+                    [1, 'rgb(0, 0, 0)']
+                ]
+            }
+        ];
+
+        var autocorrelation_graphic_layout = {showlegend: false};
+        Plotly.newPlot('autocorrelation', autocorrelation_graphic, autocorrelation_graphic_layout , {staticPlot: true});
+    }
 }
