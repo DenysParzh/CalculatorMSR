@@ -43,6 +43,7 @@ class MsrCalculator:
                 18. message: str => example: "Data successful", "Seed are not valid"
                 19. autocorr_per: list[list[float]]
                 20. autocorr_nonper: list[list[float]]
+                21. autocorr2d_seq: list[list[float]]
             """
 
         output = {}
