@@ -51,11 +51,11 @@ def validation_polynomial(degree, j):
 
 
 def calculate_acf(real_t, binary_sequence):
-    acf = []
-    for tilda in range(real_t):
-        sum = 0
-        for t in range(real_t - 1):
-            sum += binary_sequence[t] * binary_sequence[(t + tilda) % (real_t - 1)]
-        acf.append(sum / real_t)
+    import numpy as np
 
-    return acf
+    acf = np.correlate(binary_sequence, binary_sequence, mode='full')
+    acf = acf.astype(float) / real_t
+    acf = acf[len(acf) // 2:len(acf) // 2 + real_t]
+    acf += acf[::-1]
+
+    return acf.tolist()

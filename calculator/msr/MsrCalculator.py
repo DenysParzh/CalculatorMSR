@@ -41,6 +41,8 @@ class MsrCalculator:
                 16. acf: list[float]
                 17. error flag: bool
                 18. message: str => example: "Data successful", "Seed are not valid"
+                19. autocorr_per: list[list[float]]
+                20. autocorr_nonper: list[list[float]]
             """
 
         output = {}
@@ -82,6 +84,10 @@ class MsrCalculator:
 
         acf = utils.calculate_acf(real_period, bin_sequence)
 
+        torus = self.generate_torus(a_poly_period, b_poly_period, matrix_a, matrix_b, matrix_s)
+        unpuck_torus = self.unpuck_torus(torus, a_power, b_power, a_poly_period, b_poly_period)[0]
+        autocorr_per, autocorr_nonper = self.autocorr2d_calc(unpuck_torus)
+
         output['a_poly'] = str(a_poly)
         output['b_poly'] = str(b_poly)
         output['a_period'] = a_poly_period
@@ -98,6 +104,8 @@ class MsrCalculator:
         output['theoretical_period'] = theoretical_period
         output['real_period'] = real_period
         output['acf'] = acf
+        output['autocorr_per'] = autocorr_per.tolist()
+        output['autocorr_nonper'] = autocorr_nonper.tolist()
 
         return output
 
@@ -156,6 +164,41 @@ class MsrCalculator:
 
             if np.all(matrix_s == limit):
                 return sequence, states
+
+    @staticmethod
+    def generate_torus(t_a, t_b, struct_a, struct_b, matrix_s):
+        torus = []
+        for i in range(t_a - 1, -1, -1):
+            for j in range(t_b - 1, -1, -1):
+                A = np.linalg.matrix_power(struct_a, i) % 2
+                B = np.linalg.matrix_power(struct_b, j) % 2
+                V = np.matmul(A, matrix_s) % 2
+
+                state = np.matmul(V, B) % 2
+                torus.append(state)
+        return torus
+
+    @staticmethod
+    def unpuck_torus(torus, n, m, t_a, t_b):
+        large_array = np.concatenate([arr.flatten() for arr in torus])
+        large_array = np.array(utils.sequence_to_bin(large_array))
+        num_matrices = len(large_array) // (t_a * n * t_b * m)
+        reshaped_matrices = large_array.reshape((num_matrices, t_a * n, t_b * m))
+
+        return reshaped_matrices
+
+    @staticmethod
+    def autocorr2d_calc(unpuck_torus):
+        from scipy.signal import correlate2d
+
+        autocorr = correlate2d(unpuck_torus, unpuck_torus, mode="full")
+        max_value = autocorr[autocorr.shape[0] // 2, autocorr.shape[1] // 2]
+        autocorr_normalized = autocorr / max_value
+
+        height, width = autocorr_normalized.shape
+        autocorr_normalized_nonperiodic = autocorr_normalized[height // 2:, width // 2:]
+
+        return autocorr_normalized, autocorr_normalized_nonperiodic
 
     @staticmethod
     def _validate_input(j_a, j_b, degree_a, degree_b):
