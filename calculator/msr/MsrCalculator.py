@@ -88,6 +88,9 @@ class MsrCalculator:
         unpuck_torus = self.unpuck_torus(torus, a_power, b_power, a_poly_period, b_poly_period)[0]
         autocorr_per, autocorr_nonper = self.autocorr2d_calc(unpuck_torus)
 
+        pack_sequence = self.pack_sequence(bin_sequence, a_poly_period, b_poly_period)
+        autocorr2d_seq, _ = self.autocorr2d_calc(pack_sequence)
+
         output['a_poly'] = str(a_poly)
         output['b_poly'] = str(b_poly)
         output['a_period'] = a_poly_period
@@ -106,6 +109,7 @@ class MsrCalculator:
         output['acf'] = acf
         output['autocorr_per'] = autocorr_per
         output['autocorr_nonper'] = autocorr_nonper
+        output['autocorr2d_seq'] = autocorr2d_seq
 
         return output
 
@@ -202,6 +206,18 @@ class MsrCalculator:
         autocorr_normalized_nonperiodic = np.round(autocorr_normalized_nonperiodic, decimals=3)
 
         return autocorr_normalized.tolist(), autocorr_normalized_nonperiodic.tolist()
+
+    @staticmethod
+    def pack_sequence(seq, t_a, t_b):
+
+        result_seq = [[0] * t_b for _ in range(t_a)]
+
+        for k in range(t_a * t_b):
+            i = k % t_a
+            j = k % t_b
+            result_seq[i][j] = seq[k]
+
+        return result_seq
 
     @staticmethod
     def _validate_input(j_a, j_b, degree_a, degree_b):
