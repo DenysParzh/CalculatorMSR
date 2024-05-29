@@ -269,5 +269,74 @@ function msr_response_visualization(data) {
         });
     }
 
+    // TORUS PERIOD
+    {
+        const torus_period_block = document.createElement('div');
+        torus_period_block.className = 'acf-block';
+        div.appendChild(torus_period_block);
 
+        const torus_period_lbl = document.createElement('div');
+        torus_period_lbl.style.marginTop = '5px';
+        torus_period_lbl.style.width = '700px';
+        torus_period_lbl.className = 'name';
+        torus_period_lbl.textContent = 'Періодична АКФ Тору станів';
+        torus_period_block.appendChild(torus_period_lbl);
+
+        const torus_period = document.createElement('div');
+        torus_period.id = 'torus_period';
+        torus_period.style.width = '1000px';
+        torus_period.style.height = '390px';
+        torus_period_block.appendChild(torus_period);
+
+        var data_torus_period = [
+            {
+               z: data.autocorr_per,
+               type: 'heatmap',
+                colorscale: [
+                    [0, 'rgb(45,106, 79)'],
+                    [0.5, 'rgb(0, 255, 0)'],
+                    [1, 'rgb(0, 0, 0)']
+                ]
+            }
+        ];
+
+        var period_torus_layout = {showlegend: false};
+        Plotly.newPlot('torus_period', data_torus_period, period_torus_layout, {staticPlot: true});
+    }
+
+    // TORUS NONPERIOD
+    {
+        const torus_nonperiod_block = document.createElement('div');
+        torus_nonperiod_block.className = 'acf-block';
+
+        div.appendChild(torus_nonperiod_block);
+
+        const torus_nonperiod_lbl = document.createElement('div');
+        torus_nonperiod_lbl.style.marginTop = '5px';
+        torus_nonperiod_lbl.style.width = '700px';
+        torus_nonperiod_lbl.className = 'name';
+        torus_nonperiod_lbl.textContent = 'Аперіодична АКФ Тору станів';
+        torus_nonperiod_block.appendChild(torus_nonperiod_lbl);
+
+        const torus_nonperiod = document.createElement('div');
+        torus_nonperiod.id = 'torus_nonperiod';
+        torus_nonperiod.style.width = '1000px';
+        torus_nonperiod.style.height = '390px';
+        torus_nonperiod_block.appendChild(torus_nonperiod);
+
+        var data_torus_nonperiod = [
+            {
+               z: data.autocorr_nonper,
+               type: 'heatmap',
+                colorscale: [
+                    [0, 'rgb(45,106, 79)'],
+                    [0.5, 'rgb(0, 255, 0)'],
+                    [1, 'rgb(0, 0, 0)']
+                ]
+            }
+        ];
+
+        var nonperiod_torus_layout = {showlegend: false};
+        Plotly.newPlot('torus_nonperiod', data_torus_nonperiod, nonperiod_torus_layout , {staticPlot: true});
+    }
 }
