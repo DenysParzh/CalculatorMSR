@@ -39,9 +39,9 @@ class LfsrCalculator:
         if error_flag:
             return output_data
 
-        bin_poly = utils.convert8to2(g8)[1:]
-        seed = utils.convert10to2(seed, len(bin_poly))
-        struct_matrix = self.get_structure_matrix(bin_poly)
+        bin_poly = utils.convert8to2(g8)
+        seed = utils.convert10to2(seed, len(bin_poly[1:]))
+        struct_matrix = self.get_structure_matrix(bin_poly[1:])
         sequence, generator_states = self.calculate_sequence(seed, struct_matrix)
         binary_sequence = utils.sequence_to_bin(sequence)
         inv_struct_matrix = utils.get_inv_struct_matrix(struct_matrix)
