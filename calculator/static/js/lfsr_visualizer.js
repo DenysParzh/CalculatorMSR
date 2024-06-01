@@ -133,7 +133,7 @@ function lfsr_response_visualization(data) {
         graphic_block_lbl.style.marginTop = '5px';
         graphic_block_lbl.style.width = '700px';
         graphic_block_lbl.className = 'name';
-        graphic_block_lbl.textContent = 'Графік АЦФ';
+        graphic_block_lbl.textContent = 'Графік АКФ';
         graphic_block.appendChild(graphic_block_lbl);
 
         const graphic = document.createElement('div');
@@ -143,7 +143,7 @@ function lfsr_response_visualization(data) {
         graphic_block.appendChild(graphic);
 
         var data_acf = data.acf;
-        var x_line = Array.from({length: data_acf.length}, (v, i) => i + 1);
+        var x_line = Array.from({length: data_acf.length}, (v, i) => i);
 
         var trace = {
             x: x_line,
