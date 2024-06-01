@@ -1,8 +1,10 @@
-import numpy as np
 import math
+import time
 
-from .. import utils
+import numpy as np
+
 from .polynomial import IrredPolynom
+from .. import utils
 
 
 class MsrCalculator:
@@ -195,9 +197,23 @@ class MsrCalculator:
 
     @staticmethod
     def autocorr2d_calc(unpuck_torus):
-        from scipy.signal import correlate2d
 
-        autocorr = correlate2d(unpuck_torus, unpuck_torus, mode="full")
+        unpuck_torus = np.array(unpuck_torus)
+        start = time.time()
+
+        def fft_convolve2d(x, y):
+            fshape = [x.shape[0] + y.shape[0] - 1, x.shape[1] + y.shape[1] - 1]
+            fslice = tuple([slice(0, int(sz)) for sz in fshape])
+            sp1 = np.fft.rfftn(x, fshape)
+            sp2 = np.fft.rfftn(y, fshape)
+            ret = np.fft.irfftn(sp1 * sp2, fshape)[fslice].copy()
+            return ret
+
+        autocorr = fft_convolve2d(unpuck_torus, unpuck_torus[::-1, ::-1])
+
+        total_elapsed_time = time.time() - start
+        print(f"Total execution took {total_elapsed_time:.2f} seconds")
+
         max_value = autocorr[autocorr.shape[0] // 2, autocorr.shape[1] // 2]
         autocorr_normalized = autocorr / max_value
 

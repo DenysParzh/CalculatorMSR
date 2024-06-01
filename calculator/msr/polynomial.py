@@ -26,9 +26,9 @@ class IrredPolynom:
         power = len(self.g2) - 1
         result = ""
 
-        for elem in self.g2:
+        for elem in self.g2[1:]:
             if elem:
-                result += f"x^{power} + "
+                result += f"x^{power-1} + "
 
             power -= 1
 
