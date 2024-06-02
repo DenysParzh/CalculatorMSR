@@ -47,7 +47,7 @@ class LfsrCalculator:
         inv_struct_matrix = utils.get_inv_struct_matrix(struct_matrix)
         str_poly = self._get_str_poly(bin_poly)
         real_period = len(generator_states)
-        acf = utils.calculate_acf(real_period, binary_sequence)
+        acf = utils.calculate_acff(real_period, binary_sequence)
 
         output_data['polynomial'] = str_poly
         output_data['struct_matrix'] = struct_matrix

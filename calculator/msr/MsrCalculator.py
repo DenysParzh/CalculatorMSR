@@ -85,7 +85,7 @@ class MsrCalculator:
         theoretical_period = math.lcm(a_poly_period, b_poly_period)
         real_period = len(sequence)
 
-        acf = utils.calculate_acf(real_period, bin_sequence)
+        acf = utils.calculate_acff(real_period, bin_sequence)
 
         torus = self.generate_torus(a_poly_period, b_poly_period, matrix_a, matrix_b, matrix_s)
         unpuck_torus = self.unpuck_torus(torus, a_power, b_power, a_poly_period, b_poly_period)[0]
@@ -199,7 +199,6 @@ class MsrCalculator:
     def autocorr2d_calc(unpuck_torus):
 
         unpuck_torus = np.array(unpuck_torus)
-        start = time.time()
 
         def fft_convolve2d(x, y):
             fshape = [x.shape[0] + y.shape[0] - 1, x.shape[1] + y.shape[1] - 1]
@@ -210,9 +209,6 @@ class MsrCalculator:
             return ret
 
         autocorr = fft_convolve2d(unpuck_torus, unpuck_torus[::-1, ::-1])
-
-        total_elapsed_time = time.time() - start
-        print(f"Total execution took {total_elapsed_time:.2f} seconds")
 
         max_value = autocorr[autocorr.shape[0] // 2, autocorr.shape[1] // 2]
         autocorr_normalized = autocorr / max_value
