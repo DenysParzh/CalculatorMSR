@@ -85,7 +85,7 @@ class MsrCalculator:
         theoretical_period = math.lcm(a_poly_period, b_poly_period)
         real_period = len(sequence)
 
-        acf = utils.calculate_acff(real_period, bin_sequence)
+        acf = utils.calculate_acf(real_period, bin_sequence)
 
         torus = self.generate_torus(a_poly_period, b_poly_period, matrix_a, matrix_b, matrix_s)
         unpuck_torus = self.unpuck_torus(torus, a_power, b_power, a_poly_period, b_poly_period)[0]
@@ -238,13 +238,13 @@ class MsrCalculator:
         if degree_a > degree_b:
             return True, "Degree A is greater than Degree B"
 
-        is_valid_poly_a = utils.validation_polynomial(degree_a, j_a)
-        is_valid_poly_b = utils.validation_polynomial(degree_b, j_b)
-
-        if not is_valid_poly_a:
-            return True, "Polynomial A is not valid"
-
-        if not is_valid_poly_b:
-            return True, "Polynomial B is not valid"
+        # is_valid_poly_a = utils.validation_polynomial(degree_a, j_a)
+        # is_valid_poly_b = utils.validation_polynomial(degree_b, j_b)
+        #
+        # if not is_valid_poly_a:
+        #     return True, "Polynomial A is not valid"
+        #
+        # if not is_valid_poly_b:
+        #     return True, "Polynomial B is not valid"
 
         return False, "Data successful"

@@ -120,7 +120,7 @@ function lfsr_response_visualization(data) {
         // Polynomial
         create_block('poly_lbl', 'poly', 'box', row_2, 'Поліном', data.polynomial);
         document.getElementById('poly_lbl').style.width = '320px';
-        document.getElementById('poly').style.width = '150px';
+        document.getElementById('poly').style.width = '320px';
     }
 
     // ACF GRAPHIC

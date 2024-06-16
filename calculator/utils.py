@@ -26,10 +26,6 @@ def convert10to2(num, length=None):
     return binary_array
 
 
-def calculate_acff(real_t, binary_sequence):
-    return [1] + [-1 / real_t for _ in range(len(binary_sequence))]
-
-
 def calculate_hamming_weight(sequence):
     return len(list(filter(lambda x: x, sequence)))
 
